@@ -1,6 +1,9 @@
 Buses
 =====
 
+## Description
+The app is using YEOMEN generator https://github.com/DaftMonk/generator-angular-fullstack.
+
 ## Importing data
 
 ### Install mongo server:
