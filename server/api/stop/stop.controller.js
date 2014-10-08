@@ -20,37 +20,11 @@ exports.show = function(req, res) {
   });
 };
 
-// Creates a new stop in the DB.
-exports.create = function(req, res) {
-  Stop.create(req.body, function(err, stop) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, stop);
-  });
-};
-
-// Updates an existing stop in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Stop.findById(req.params.id, function (err, stop) {
-    if (err) { return handleError(res, err); }
-    if(!stop) { return res.send(404); }
-    var updated = _.merge(stop, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, stop);
-    });
-  });
-};
-
-// Deletes a stop from the DB.
-exports.destroy = function(req, res) {
-  Stop.findById(req.params.id, function (err, stop) {
+exports.searchByName = function(req, res) {
+  Stop.find({StopName: new RegExp(req.params.name, 'i')}, function (err, stop) {
     if(err) { return handleError(res, err); }
     if(!stop) { return res.send(404); }
-    stop.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
+    return res.json(stop);
   });
 };
 
