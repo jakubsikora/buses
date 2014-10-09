@@ -6,13 +6,14 @@ var geocoder = require('node-geocoder').getGeocoder(geocoderProvider, http);
 
 // Get a single geocoder
 exports.search = function(req, res) {
+
   // TODO, move specific country and city to config
   geocoder.geocode({
-    address: req.params.address + ' Brighton',
-    country: 'UK'
+    address: req.params.address,
+    country: 'GB',
+    administrative_area: 'The City of Brighton and Hove'
   }, function(err, response) {
-    if(err) { return handleError(response, err); }
-    if(!response) { return res.send(404); }
+    console.log('response', response);
     return res.json(response);
   });
 };
