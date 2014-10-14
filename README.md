@@ -21,3 +21,11 @@ The app is using YEOMEN generator https://github.com/DaftMonk/generator-angular-
 ### Import services:
 
 ```mongoimport -d buses-dev -c services data/services.json --jsonArray```
+
+### Import service routes:
+
+```mongoimport -d buses-dev -c service_routes data/service_routes.json --jsonArray```
+
+## TODO
+- refactor for meanjs structure
+- add new model for service_routes
