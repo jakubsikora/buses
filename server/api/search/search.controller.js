@@ -9,14 +9,15 @@ exports.show = function(req, res) {
     location: findLocation(req.params.s)
   },
   function(err, results) {
+    // TODO
     var maxSeeds = 5;
     var stopLength = results.stops.length || 0;
     var locationLength = results.location.length || 0;
     var totalLength = stopLength + locationLength;
-    var stopPercent = Math.round(stopLength/totalLength*100);
-    var locationPercent = Math.round(locationLength/totalLength*100);
-    var stopSeeds = Math.round(stopPercent/100 * maxSeeds);
-    var locationSeeds = Math.round(locationPercent/100 * maxSeeds);
+    var stopPercent = Math.round(stopLength / totalLength * 100);
+    var locationPercent = Math.round(locationLength / totalLength * 100);
+    var stopSeeds = Math.round(stopPercent / 100 * maxSeeds);
+    var locationSeeds = Math.round(locationPercent / 100 * maxSeeds);
     var output = [];
 
     if (stopSeeds < 1 && stopLength > 0) {
@@ -35,6 +36,18 @@ exports.show = function(req, res) {
     };
 
     res.json(output);
+  });
+};
+
+exports.nearby = function(req, res) {
+  Stop.find( {
+    loc: {
+      $near: req.params,
+      $maxDistance: 0.2 / 111.12
+    }
+  }, function (err, stops) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, stops);
   });
 };
 
