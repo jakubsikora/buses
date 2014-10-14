@@ -6,9 +6,9 @@ The app is using YEOMEN generator https://github.com/DaftMonk/generator-angular-
 
 ## Importing data
 
-### Install mongo server:
+### Mongo server:
 
-```sudo apt-get install mongodb-server```
+Make sure that mongo server buses-dev is running.
 
 ### Import stops:
 
