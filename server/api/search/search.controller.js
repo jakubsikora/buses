@@ -67,7 +67,8 @@ function findLocation(s) {
 
     geocoder.geocode({
       address: s,
-      components: 'administrative_area:Brighton|country:GB'
+      country: 'GB',
+      administrative_area: 'The City of Brighton and Hove'
     }, function(err, response) {
       callback(null, response);
     });
